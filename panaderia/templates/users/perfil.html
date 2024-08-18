@@ -1,0 +1,16 @@
+{% extends "users/base_users.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<div class="container mt-5 content">
+    <h2 class="mb-1 text-">Bienvenido al Sistema:</h2>
+    <h2 class="mb-1 text-">Nombre: {{ user.full_name }}</h2>
+    <h2 class="mb-1 text-">Correo: {{ user.email }}</h2>
+    <h2 class="mb-1 text-">Permiso: {{ user.get_ocupation_display }}</h2>
+    <h2 class="mb-1 text-">Activo: {{ user.is_active }}</h2>
+
+</div>
+
+{% endblock panel-content %}

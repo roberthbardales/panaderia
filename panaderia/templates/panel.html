@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load  static %}
+
+{% block title %} Panel Principal {% endblock title %}
+
+{% block content %}
+{% include "includes/header.html" %}
+<style>
+  .sidebar {
+      width: 250px;
+      background-color: #4b4b4b;
+      color: white;
+      height: 100vh;
+      position: fixed;
+  }
+  .sidebar a {
+      color: white;
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+  }
+  .sidebar a:hover {
+      background-color: #495057;
+  }
+  .content {
+    margin-left: 250px; /* Deja espacio para la barra de navegación */
+    padding: 40px;
+    width: 1034px; /* Ancho fijo */
+    height: 768; /* Altura fija */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total */
+    background-color: #f8f9fa; /* Color de fondo para mejor visualización */
+
+  }
+  @media (max-width: 992px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+    .content {
+      margin-left: 0;
+    }
+  }
+</style>
+  <div class="sidebar">
+      <h5 class="text-center py-3 bg-warning mx-3 mt-3 text-dark ">Administracion</h5>
+      <a href="{% url 'home_app:perfil' %}">Inicio</a>
+
+      {% if request.resolver_match.url_name == 'user-lista' %}
+      {% endif %}
+      <a href="{% url 'users_app:user-lista' %}" style="color: white;">Usuarios</a>
+      <!-- <li class="{% if request.resolver_match.url_name == 'user-lista' %}activeli{% endif %}">
+        <a href="{% url 'users_app:user-lista' %}" style="color: white;">Usuarios</a>
+      </li> -->
+      <a href="#services">Contacto</a>
+
+  </div>
+    {% block panel-content %}
+
+    {% endblock panel-content %}
+
+
+{% endblock content %}

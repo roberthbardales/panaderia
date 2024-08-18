@@ -1,0 +1,34 @@
+{% load static %}
+<style>
+  .bg-barra {
+    background-color: #4b4b4b;
+    position: fixed; /* Fija la posición */
+    top: 0; /* Alinea en la parte superior */
+    width: 100%; /* Ocupa todo el ancho */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+  }
+</style>
+<nav class="navbar navbar-expand-sm navbar-light bg-barra sticky-top">
+  <div class="container-fluid text ">
+    <a class="navbar-brand text-light ms-4" href="#">
+      <h2 class="text-warning">Panaderia</h2>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto  ">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="#">
+            <h4>Sesion de: {{ user.full_name }}</h4>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link active btn btn-warning" aria-current="page" href="{% url 'users_app:user-logout' %}">Salir</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</nav>
