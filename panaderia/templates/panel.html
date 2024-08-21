@@ -42,11 +42,10 @@
 </style>
   <div class="sidebar">
       <h5 class="text-center py-3 bg-warning mx-3 mt-3 text-dark ">Administracion</h5>
-      <a href="{% url 'home_app:perfil' %}">Inicio</a>
-
-      {% if request.resolver_match.url_name == 'user-lista' %}
-      {% endif %}
+      <a href="{% url 'users_app:perfil' %}">Inicio</a>
+      {% if user.ocupation == "0" or user.is_superuser %}
       <a href="{% url 'users_app:user-lista' %}" style="color: white;">Usuarios</a>
+      {% endif %}
       <!-- <li class="{% if request.resolver_match.url_name == 'user-lista' %}activeli{% endif %}">
         <a href="{% url 'users_app:user-lista' %}" style="color: white;">Usuarios</a>
       </li> -->

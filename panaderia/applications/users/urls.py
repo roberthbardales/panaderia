@@ -12,6 +12,11 @@ urlpatterns = [
         name='user-login',
     ),
     path(
+        'perfil/',
+        views.TemplatePerfil.as_view(),
+        name='perfil',
+    ),
+    path(
         'users/register/',
         views.UserRegisterView.as_view(),
         name='user-register',

@@ -10,11 +10,11 @@ urlpatterns = [
         views.PanelView.as_view(),
         name='home',
     ),
-    path(
-        'perfil/',
-        views.PanelView2.as_view(),
-        name='perfil',
-    ),
+    # path(
+    #     'perfil/',
+    #     views.PanelView2.as_view(),
+    #     name='perfil',
+    # ),
 
     # path(
     #     'users/register/',

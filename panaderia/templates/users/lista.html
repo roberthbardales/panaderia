@@ -4,6 +4,11 @@
 
 {% block panel-content %}
 
+
+{% if user.ocupation == "0" or user.is_superuser %}
+
+
+
 <div class="container mt-5 content">
     <h2 class="mb-4 text-center">Usuarios del Sistema</h2> <!-- Título centrado -->
     <table class="table table-bordered">
@@ -58,5 +63,5 @@
         <a class="btn btn-danger btn-lg" href="{% url 'users_app:user-update_password' %}" >Cambiar Contraseña</a>
     </div>
 </div>
-
+{% endif %}
 {% endblock panel-content %}

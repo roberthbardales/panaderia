@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
 from django.views.generic import (
+    TemplateView,
     View,
     CreateView,
     ListView,
@@ -26,6 +27,9 @@ from .forms import (
 #
 from .models import User
 #
+
+class TemplatePerfil(LoginRequiredMixin,TemplateView):
+    template_name = 'users/perfil.html'
 
 
 class UserRegisterView(FormView):
@@ -51,7 +55,7 @@ class UserRegisterView(FormView):
 class LoginUser(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('home_app:perfil')
+    success_url = reverse_lazy('users_app:perfil')
 
     def form_valid(self, form):
         user = authenticate(
@@ -74,14 +78,14 @@ class LogoutView(View):
 
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(LoginRequiredMixin,UpdateView):
     template_name = "users/update.html"
     model = User
     form_class = UserUpdateForm
     success_url = reverse_lazy('users_app:user-lista')
 
 
-class UserDeleteView(DeleteView):
+class UserDeleteView(LoginRequiredMixin,DeleteView):
     model = User
     success_url = reverse_lazy('users_app:user-lista')
 
@@ -110,9 +114,10 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
         return super(UpdatePasswordView, self).form_valid(form)
 
 
-class UserListView(ListView):
+class UserListView(LoginRequiredMixin,ListView):
     template_name = "users/lista.html"
     context_object_name = 'usuarios'
 
     def get_queryset(self):
         return User.objects.usuarios_sistema()
+

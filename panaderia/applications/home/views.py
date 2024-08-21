@@ -7,8 +7,8 @@ from django.views.generic import (
 class PanelView(TemplateView):
     template_name = 'panel.html'
 
-class PanelView2(TemplateView):
-    template_name = 'users/perfil.html'
+# class PanelView2(TemplateView):
+#     template_name = 'users/perfil.html'
 
 
 

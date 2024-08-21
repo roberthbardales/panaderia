@@ -25,5 +25,5 @@ class UserManager(BaseUserManager, models.Manager):
 
     def usuarios_sistema(self):
         return self.filter(
-            is_superuser=False
+            is_superuser=False,
         ).order_by('-last_login')
