@@ -1,0 +1,63 @@
+{% extends "home/base_home.html" %}
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="row content">
+
+  <div class="col-12 row mb-3">
+    <div class="col-md-4">
+      <div class="card text-center text-white bg-success">
+        <div class="card-body">
+          <h5 class="card-title">Total Ventas Hoy</h5>
+          <h3>S/ {{ total_ventas }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center text-white bg-primary">
+        <div class="card-body">
+          <h5 class="card-title">Total Anulaciones</h5>
+          <h3>S/ {{ total_anulaciones }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center text-white bg-danger">
+        <div class="card-body">
+          <h5 class="card-title">Productos en 0</h5>
+          <h3>{{ stok_cero }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <h4>Informe de Ingresas en la semana:</h4>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Numero Ventas</th>
+            <th>Total Vendido</th>
+            <th>Total Ganancias</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for venta in resumen_semana %}
+            <tr>
+              <td>{{ venta.sale__date_sale__date }}</td>
+              <td>{{ venta.num_ventas }}</td>
+              <td>{{ venta.total_vendido }}</td>
+              <td>{{ venta.total_ganancias }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock panel-content %}

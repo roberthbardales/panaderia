@@ -1,0 +1,80 @@
+{% extends "panel.html" %}
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="row content">
+  <form class="col-12 row g-3" method="GET">
+    <div class="col-12 input-group">
+      <span class="input-group-text">Código o Nombre</span>
+      <input class="form-control" type="text" id="kword" name="kword"
+        value="{{ request.GET.kword }}"
+        placeholder="Código o nombre...">
+    </div>
+    <div class="col-12 row g-3">
+        <p class="col-12">Por Fecha de Vencimiento:</p>
+        <input type="date" name="date_start" id="date_start" class="col-md-4 form-control">
+        <input type="date" name="date_end" id="date_end" class="col-md-4 form-control">
+        <p class="col-12">Proveedor o Marca:</p>
+        <input type="text" name="provide" id="provider" class="col-md-4 form-control" placeholder="Proveedor...">
+        <input type="text" name="marca" id="marca" class="col-md-4 form-control" placeholder="Marca...">
+        <button class="col-md-4 btn btn-success">Filtrar</button>
+    </div>
+  </form>
+
+  <div class="col-12 mt-4">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>COD</th>
+            <th>
+              {% if request.path == request.get_full_path %}
+                <a href="{{ request.get_full_path }}?order=name">Nombres</a>
+              {% else %}
+                <a href="{{ request.get_full_path }}&order=name">Nombres</a>
+              {% endif %}
+            </th>
+            <th>Precio Venta</th>
+            <th>Precio Compra</th>
+            <th>
+              {% if request.path == request.get_full_path %}
+                <a href="{{ request.get_full_path }}?order=stok">Stock</a>
+              {% else %}
+                <a href="{{ request.get_full_path }}&order=stok">Stock</a>
+              {% endif %}
+            </th>
+            <th>
+              {% if request.path == request.get_full_path %}
+                <a href="{{ request.get_full_path }}?order=num">Ventas</a>
+              {% else %}
+                <a href="{{ request.get_full_path }}&order=num">Ventas</a>
+              {% endif %}
+            </th>
+            <th>Vencimiento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for producto in productos %}
+            <tr>
+              <td>{{ producto.barcode }}</td>
+              <td>{{ producto.name }}</td>
+              <td>{{ producto.sale_price }}</td>
+              <td>{{ producto.purchase_price }}</td>
+              <td>{{ producto.count }}</td>
+              <td>{{ producto.num_sale }}</td>
+              <td>{{ producto.due_date }}</td>
+              <td>
+                <a href="{% url 'producto_app:producto-detail' producto.id %}" class="btn btn-warning btn-sm">Ver</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock panel-content %}

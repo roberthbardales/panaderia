@@ -16,15 +16,15 @@
   .sidebar a {
       color: white;
       display: block;
-      padding: 10px;
+      padding: 5px;
       text-decoration: none;
   }
   .sidebar a:hover {
-      background-color: #495057;
+      background-color: #636b73;
   }
   .content {
     margin-left: 250px; /* Deja espacio para la barra de navegación */
-    padding: 40px;
+    padding: 90px;
     width: 1034px; /* Ancho fijo */
     height: 768; /* Altura fija */
     box-sizing: border-box; /* Incluye el padding en el tamaño total */
@@ -40,17 +40,29 @@
     }
   }
 </style>
-  <div class="sidebar">
-      <h5 class="text-center py-3 bg-warning mx-3 mt-3 text-dark ">Administracion</h5>
-      <a href="{% url 'users_app:perfil' %}">Inicio</a>
-      {% if user.ocupation == "0" or user.is_superuser %}
-      <a href="{% url 'users_app:user-lista' %}" style="color: white;">Usuarios</a>
-      {% endif %}
-      <!-- <li class="{% if request.resolver_match.url_name == 'user-lista' %}activeli{% endif %}">
-        <a href="{% url 'users_app:user-lista' %}" style="color: white;">Usuarios</a>
-      </li> -->
-      <a href="#services">Contacto</a>
+  <div class="sidebar nb-4">
+    <div class="py-1">
+    </div>
+    <h5 class="text-center py-1 bg-warning mx-1 mt-3 text-dark ">Perfil</h5>
+    <a href="{% url 'users_app:perfil' %}" class="text-center" style="color: white;">Inicio</a>
+      {% if user.ocupation == "1" or user.ocupation == "0" or user.is_superuser %}
+      <h5 class="text-center py-1 bg-warning mx-1 mt-3 text-dark ">Almacen</h5>
 
+      <a href="{% url 'producto_app:producto-lista' %}" class="text-center" style="color: white;">Productos</a>
+      <a href="{% url 'producto_app:producto-filtros' %}" class="text-center" style="color: white;">Reportes</a>
+      {% endif %}
+      {% if user.ocupation == "2" or user.ocupation == "0" or user.is_superuser %}
+      <h5 class="text-center py-1 bg-warning mx-1 mt-3 text-dark ">Ventas</h5>
+      <a href="{% url 'venta_app:venta-index' %}" class="text-center" style="color: white;">Vender</a>
+      <a href="{% url 'caja_app:caja-index' %}" class="text-center" style="color: white;">Cerar Caja</a>
+      {% endif %}
+      {% if user.ocupation == "0" or user.is_superuser %}
+      <h5 class="text-center py-1 bg-warning mx-1 mt-3 text-dark ">Administracion</h5>
+      <a href="{% url 'home_app:index-admin' %}" class="text-center" style="color: white;">Administracion</a>
+      <a class="text-center" href="{% url 'users_app:user-lista' %}" style="color: white;">Usuarios</a>
+      <a href="{% url 'home_app:admin-reporte' %}" class="text-center" style="color: white;">Reportes</a>
+      {% endif %}
+    <hr>
   </div>
     {% block panel-content %}
 

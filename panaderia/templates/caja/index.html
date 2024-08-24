@@ -1,0 +1,98 @@
+{% extends "panel.html" %}
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="row content">
+    <div class="col-md-4">
+      <div class="card text-center bg-success text-white">
+        <div class="card-body">
+          <h5>Total Ventas Hoy</h5>
+          <h3>S/ {{ total_vendido }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center bg-primary text-white">
+        <div class="card-body">
+          <h5>Total Anulaciones</h5>
+          <h3>S/ {{ total_anulado }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center bg-danger text-white">
+        <div class="card-body">
+          <h5>Total Ventas</h5>
+          <h3>{{ num_ventas_hoy }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-4">
+      <h4>Detalle de las ventas del Día:</h4>
+      <div class="table-responsive">
+        {% for venta in ventas_dia %}
+          <table class="table table-bordered">
+            <thead style="border: 1px solid green;">
+              <tr>
+                <th>N° {{venta.id}}</th>
+                <th>PAGO: {{venta.get_type_payment_display}}</th>
+                <th>PAGO: {{ venta.get_type_invoce_display }}</th>
+                <th>CANTIDAD: {{venta.count}}</th>
+                <th>TOTAL: S/ {{ venta.amount }}</th>
+              </tr>
+            </thead>
+          </table>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Precio Venta</th>
+                <th>Cantidad</th>
+                <th>Sub Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for detalle in venta.detail_sale.all %}
+                <tr>
+                  <td>{{ detalle.product.name }}</td>
+                  <td>S/. {{ detalle.price_sale }}</td>
+                  <td>{{ detalle.count }}</td>
+                  <td>S/. {{ detalle.subtotal }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-12 mt-4">
+      <button class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal1">Cerrar Caja</button>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel" style="color: green;">Monto Total: {{ total_vendido }}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 style="text-align: center;">¿Seguro que desea cerrar caja?</h3>
+        <br>
+        <form action="{% url 'caja_app:caja-cerrar' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success btn-block">Confirmar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock panel-content %}

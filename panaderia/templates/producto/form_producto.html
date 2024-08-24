@@ -1,0 +1,108 @@
+{% extends "panel.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<div class="row justify-content-center content">
+  <h3 class="col-12 text-center mb-4">Datos de Producto</h3>
+  <form class="col-md-9 row g-3" method="POST">{% csrf_token %}
+
+    <div class="col-md-6">
+      <label>Codigo de barras:</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fi-align-justify"></i></span>
+        {{ form.barcode }}
+      </div>
+      {% for error in form.barcode.errors %}
+        <p class="text-danger">
+          {{ error|escape }}
+        </p>
+      {% endfor %}
+    </div>
+    <div class="col-md-6">
+      <label>Nombre:</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fi-book"></i></span>
+        {{form.name}}
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label>Proveedor:</label>
+      <div class="input-group">
+        {{form.provider}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>Marca:</label>
+      <div class="input-group">
+        {{form.marca}}
+      </div>
+    </div>
+
+    <div class="col-md-6">
+        <label>Unidad de Medida:</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fi-price-tag"></i></span>
+          {{ form.unit }}
+        </div>
+    </div>
+    <div class="col-md-6">
+      <label>Fecha de Vencimiento:</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fi-calendar"></i></span>
+        {{ form.due_date }}
+      </div>
+    </div>
+
+    <div class="col-md-6">
+        <label>Precio Compra:</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fi-dollar"></i></span>
+          {{form.purchase_price}}
+        </div>
+        {% for error in form.purchase_price.errors %}
+          <p class="text-danger">
+            {{ error|escape }}
+          </p>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        <label>Precio Venta:</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fi-dollar"></i></span>
+          {{form.sale_price}}
+        </div>
+        {% for error in form.sale_price.errors %}
+          <p class="text-danger">
+            {{ error|escape }}
+          </p>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-12">
+      <label>Cantidad en Almacen:</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fi-list-number"></i></span>
+        {{form.count}}
+      </div>
+    </div>
+
+    <div class="col-md-12">
+        <label>Descripcion del producto:</label>
+        <div class="input-group">
+          {{form.description}}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-success w-100" style="max-width: 200px;">Guardar</button>
+      {% if product %}
+      <a href="{% url 'producto_app:producto-delete' product.id %}" class="btn btn-danger">Eliminar</a>
+      {% endif %}
+    </div>
+  </form>
+</div>
+
+{% endblock panel-content %}

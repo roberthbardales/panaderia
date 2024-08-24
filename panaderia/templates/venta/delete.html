@@ -1,0 +1,35 @@
+{% extends "venta/base_venta.html" %}
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="row justify-content-center">
+  <h5 class="col-12 text-center mb-4">¿Desea eliminar esta Venta?</h5>
+  <form class="col-md-9 row justify-content-center"
+    action="{% url 'venta_app:venta-delete' sale.id %}" method="POST">
+    {% csrf_token %}
+
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header">
+              <h3>Monto: {{ sale.amount }}</h3>
+            </div>
+            <div class="card-body">
+              <h4>ID: {{ sale.id }}</h4>
+              <p>FECHA: {{ sale.date_sale }}</p>
+              <p>CANTIDAD PRODUCTOS: {{ sale.count }}</p>
+              <p>TIPO DE COMPROBANTE: {{ sale.get_type_invoce_display }}</p>
+              <p>TIPO DE PAGO: {{ sale.get_type_payment_display }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <button type="submit" class="btn btn-danger">Eliminar</button>
+      <a href="{% url 'venta_app:venta-index' %}" class="btn btn-primary">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+{% endblock panel-content %}

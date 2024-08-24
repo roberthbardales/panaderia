@@ -22,9 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('',include('applications.users.urls')),
     re_path('',include('applications.home.urls')),
-    # re_path('',include('applications.panaderia.urls')),
-    # re_path('',include('applications.libro.urls')),
-    # re_path('',include('applications.lector.urls')),
+    re_path('',include('applications.producto.urls')),
+    re_path('',include('applications.venta.urls')),
+    re_path('',include('applications.caja.urls')),
         # urls para ckeditor
     # re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

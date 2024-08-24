@@ -10,16 +10,24 @@ urlpatterns = [
         views.PanelView.as_view(),
         name='home',
     ),
-    # path(
-    #     'perfil/',
-    #     views.PanelView2.as_view(),
-    #     name='perfil',
-    # ),
-
-    # path(
-    #     'users/register/',
-    #     views.UserRegisterView.as_view(),
-    #     name='user-register',
-    # ),
-
+    path(
+        'panel/admin/',
+        views.PanelAdminView.as_view(),
+        name='index-admin',
+    ),
+    path(
+        'panel/admin-reporte/',
+        views.ReporteAdmin.as_view(),
+        name='admin-reporte',
+    ),
+    path(
+        'panel/admin-liquidacion/',
+        views.ReporteLiquidacion.as_view(),
+        name='admin-liquidacion',
+    ),
+    path(
+        'panel/admin-resumen-ventas/',
+        views.ReporteResumenVentas.as_view(),
+        name='admin-resumen_ventas',
+    ),
 ]
