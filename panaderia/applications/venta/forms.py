@@ -9,7 +9,7 @@ class VentaForm(forms.Form):
         widget=forms.TextInput(
             attrs = {
                 'placeholder': 'Codigo de barras',
-                'class': 'input-group-field',
+                'class': 'form-control',
             }
         )
     )
@@ -18,7 +18,7 @@ class VentaForm(forms.Form):
         widget=forms.NumberInput(
             attrs = {
                 'value': '1',
-                'class': 'input-group-field',
+                'class': 'form-control',
             }
         )
     )

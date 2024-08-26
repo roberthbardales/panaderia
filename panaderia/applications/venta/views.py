@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+
 # django
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
@@ -17,7 +19,7 @@ from applications.producto.models import Product
 from applications.utils import render_to_pdf
 from applications.users.mixins import VentasPermisoMixin
 #
-from .models import Sale, SaleDetail, CarShop
+from .models import Sale, SaleDetail, CarShop,Product
 from .forms import VentaForm, VentaVoucherForm
 from .functions import procesar_venta
 
@@ -33,11 +35,13 @@ class AddCarView(VentasPermisoMixin, FormView):
         context["total_cobrar"] = CarShop.objects.total_cobrar()
         # formulario para venta con voucher
         context['form_voucher'] = VentaVoucherForm
+        # print(cantidad_almacen)
         return context
 
     def form_valid(self, form):
         barcode = form.cleaned_data['barcode']
         count = form.cleaned_data['count']
+
         obj, created = CarShop.objects.get_or_create(
             barcode=barcode,
             defaults={

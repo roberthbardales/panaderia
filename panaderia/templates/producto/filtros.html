@@ -5,22 +5,42 @@
 {% block panel-content %}
 
 <div class="row content">
-  <form class="col-12 row g-3" method="GET">
+  <form class="row g-2" method="GET">
     <div class="col-12 input-group">
       <span class="input-group-text">Código o Nombre</span>
       <input class="form-control" type="text" id="kword" name="kword"
         value="{{ request.GET.kword }}"
         placeholder="Código o nombre...">
     </div>
-    <div class="col-12 row g-3">
+    <div class="row g-2">
+      <div class="col-md-12">
         <p class="col-12">Por Fecha de Vencimiento:</p>
-        <input type="date" name="date_start" id="date_start" class="col-md-4 form-control">
-        <input type="date" name="date_end" id="date_end" class="col-md-4 form-control">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="date" name="date_start" id="date_start" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <input type="date" name="date_end" id="date_end" class="form-control">
+            </div>
+        </div>
         <p class="col-12">Proveedor o Marca:</p>
-        <input type="text" name="provide" id="provider" class="col-md-4 form-control" placeholder="Proveedor...">
-        <input type="text" name="marca" id="marca" class="col-md-4 form-control" placeholder="Marca...">
-        <button class="col-md-4 btn btn-success">Filtrar</button>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" name="provide" id="provider" class="form-control" placeholder="Proveedor...">
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="marca" id="marca" class="form-control" placeholder="Marca...">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-success w-100">Filtrar</button>
+            </div>
+        </div>
     </div>
+
+    </div>
+
   </form>
 
   <div class="col-12 mt-4">

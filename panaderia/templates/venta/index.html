@@ -6,19 +6,19 @@
 
 <div class="row  content">
   <div class="col-9 d-flex">
-    <form class="col-md-6 input-group" method="POST">{% csrf_token %}
+    <form class="col-md-6  input-group" method="POST">{% csrf_token %}
       <span class="input-group-text">COD/CAN:</span>
       {{ form.barcode }}
       {{ form.count }}
       <button type="submit" class="btn btn-secondary">Agregar</button>
     </form>
-    <form class="col-md-3" action="{% url 'venta_app:venta-simple' %}" method="POST">{% csrf_token %}
+    <form class="col-md-3 px-2" action="{% url 'venta_app:venta-simple' %}" method="POST">{% csrf_token %}
       <button type="submit" class="btn btn-success w-100">
         <i class="bi bi-cart-fill"></i>
         <span>Pagar Todo</span>
       </button>
     </form>
-    <div class="col-md-3">
+    <div class="col-md-3 px-1">
       <a class="btn btn-outline-secondary w-100" href="{% url 'venta_app:venta-list' %}">
         <i class="bi bi-trash-fill"></i>
         <span>Ultimas Ventas</span>
